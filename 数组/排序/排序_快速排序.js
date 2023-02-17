@@ -7,6 +7,6 @@ function quickSort(arr) {
   for (let i = 0; i < arr.length; i++) {
     arr[i] > midValue ? rightArr.push(arr[i]) : leftArr.push(arr[i]);
   };
-  return quickSort(leftArr).concat([midValue], rightArr);
+  return quickSort(leftArr).concat([midValue], quickSort(rightArr));
 }
 console.log(quickSort([3,2,8,4,7,10,6,1,5,9]));
