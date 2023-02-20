@@ -12,7 +12,7 @@ function DFS(root) {
   traverse(root, res);
   return res
 }
-console.log("DFS：", BFS(staticRoot));
+console.log("DFS：", DFS(staticRoot));
 
 function BFS(root) {
   let stack = [], res = [];
@@ -29,4 +29,4 @@ function BFS(root) {
   return res;
 }
 
-console.log("BFS：", DFS(staticRoot));
+console.log("BFS：", BFS(staticRoot));
