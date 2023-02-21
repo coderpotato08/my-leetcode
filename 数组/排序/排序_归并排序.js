@@ -13,20 +13,23 @@ function process(arr, left, right) {
   merge(arr, left, mid, right);
 }
 function merge(arr, left, mid, right) {
-  let temp = [];
-  let p1 = left, p2 = mid + 1, i = 0;
-  while(p1 <= mid && p2 <= right) {
-    temp[i++] = arr[p1] <= arr[p2] ? arr[p1++] : arr[p2++];
+  let temp = []
+  for(let i = left; i <= right; i++) {
+    temp[i] = arr[i]
   }
-  while(p1 <= mid) {
-    temp[i++] = arr[p1++]
-  }
-  while(p2 <= right) {
-    temp[i++] = arr[p2++]
-  }
-  for(let index = 0; index < temp.length; index ++) {
-    arr[left + index] = temp[index];
+  let i = left, j = mid + 1;
+  let p = left;
+  while(p <= right) {
+    if(i === mid + 1) {
+      arr[p++] = temp[j++]
+    } else if(j === right + 1) {
+      arr[p++] = temp[i++]
+    } else if(temp[i] <= temp[j]) {
+      arr[p++] = temp[i++]
+    } else {
+      arr[p++] = temp[j++]
+    }
   }
 }
 
-mergeSort([3,2,8,4,7,10,6,1,5,9])
+mergeSort([8,4,2,3,7,6,1,5,9,10])
