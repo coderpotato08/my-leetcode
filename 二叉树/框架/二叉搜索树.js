@@ -1,3 +1,29 @@
+const notBST = {
+  val: 10,
+  left: {
+    val: 5,
+    left: {
+      val: 4,
+      left: null,
+      right: null,
+    },
+    right: {
+      val: 8,
+      left: null,
+      right: {
+        val: 12,
+        left: null,
+        right: null,
+      },
+    },
+  },
+  right: {
+    val: 13,
+    left: null,
+    right: null,
+  },
+}
+
 function TreeNode(value) {
   this.value = value;
   this.left = null;
@@ -6,6 +32,7 @@ function TreeNode(value) {
 
 function SearchTree() {
   this.root = null;
+  // 二搜索叉树插入
   this.insert = function (value) {
     const node = new TreeNode(value)
     if (!this.root) {
@@ -28,6 +55,7 @@ function SearchTree() {
       }
     }
   }
+  // 二叉搜索树删除
   this.remove = function (value) {
     this.root = this.removeNode(this.root, value);
   }
@@ -68,6 +96,13 @@ function SearchTree() {
     }
     return root;
   }
+  // 验证二叉搜索树
+  this.isValidBST = function(root, min, max) {
+    if(!root) return true;
+    if(min && root.val > min.val) return false;
+    if(max && root.val < max.val) return false;
+    return this.isValidBST(root.left, min, root) && this.isValidBST(root.right, root, max)
+  }
 }
 
 const testTree = new SearchTree();
@@ -81,6 +116,4 @@ testTree.insert(3);
 testTree.insert(7);
 testTree.insert(9);
 
-testTree.remove(6);
-
-console.log(testTree.root);
+console.log(testTree.isValidBST(notBST, null, null));
