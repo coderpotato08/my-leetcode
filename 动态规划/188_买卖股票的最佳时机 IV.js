@@ -8,7 +8,7 @@
  * dp[i][0] 第i天未操作 都为0 j=0可以跳过遍历
  * dp[0][j] 第一天所有k次买卖内，买入的情况为-price[0]
  */
-conat maxProfit = function(k, prices) {
+const maxProfit = function(k, prices) {
   if(prices.length < 2) return 0
   const dp = Array.from(new Array(prices.length), () => new Array(2*k+1).fill(0));
   for(let j=1; j<2*k; j+=2) {
@@ -24,3 +24,4 @@ conat maxProfit = function(k, prices) {
 };
 
 console.log(maxProfit([3,2,6,5,0,3]))
+
