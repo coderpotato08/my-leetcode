@@ -1,12 +1,12 @@
-function minSubArrayLen(target, nums) {
-  let i = 0, j = 0;
+function minSubArrayLen(target, nums) { // 滑动窗口思路
+  let l=0, r=0, sum=0;
   let minLen = Infinity;
-  while(j < nums.length) {
-    const result = nums.splice(i,j+1).reduce((a, b) => a = a + b, 0);
-    if(result < target) {
-      j ++
-    } else (result > target) {
-      i ++
-    }
+  for(; r<nums.length; r++) {
+      sum+=nums[r];
+      while(sum >= target) {
+          minLen = Math.min(minLen, r+1-l);
+          sum-=nums[l++]
+      }
   }
+  return minLen == Infinity ? 0 : minLen
 }
